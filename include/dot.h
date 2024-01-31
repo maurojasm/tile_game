@@ -17,6 +17,14 @@ class Dot
 		static const int DOT_WIDTH = 20;
 		static const int DOT_HEIGHT = 20;
 
+		//The dimensions of the level
+		const int LEVEL_WIDTH = 1280;
+		const int LEVEL_HEIGHT = 960;
+
+		//Screen dimension constants
+		const int SCREEN_WIDTH = 640;
+		const int SCREEN_HEIGHT = 480;
+
 		//Maximum axis velocity of the dot
 		static const int DOT_VEL = 10;
 

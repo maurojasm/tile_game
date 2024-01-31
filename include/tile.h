@@ -13,6 +13,10 @@ This source code copyrighted by Lazy Foo' Productions 2004-2024
 class Tile
 {
     public:
+		//Tile constants
+		const int TILE_WIDTH = 80;
+		const int TILE_HEIGHT = 80;
+
 		//Initializes position and type
 		Tile( int x, int y, int tileType );
 
