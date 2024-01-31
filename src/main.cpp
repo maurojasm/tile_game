@@ -9,9 +9,9 @@ This source code copyrighted by Lazy Foo' Productions 2004-2024
 #include <string>
 #include <fstream>
 
-#include "include/dot.h"
-#include "include/texture.h"
-#include "include/tile.h"
+#include "../include/dot.h"
+#include "../include/texture.h"
+#include "../include/tile.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
