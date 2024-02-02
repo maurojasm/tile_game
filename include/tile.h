@@ -2,6 +2,8 @@
 This source code copyrighted by Lazy Foo' Productions 2004-2024
 */
 
+#pragma once
+
 //Using SDL, SDL_image, standard IO, strings, and file streams
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>

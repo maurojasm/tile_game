@@ -50,11 +50,11 @@ bool loadMedia( Tile* tiles[] );
 //Frees media and shuts down SDL
 void close( Tile* tiles[] );
 
-//Box collision detector
-bool checkCollision( SDL_Rect a, SDL_Rect b );
+// //Box collision detector
+// bool checkCollision( SDL_Rect a, SDL_Rect b );
 
-//Checks collision box against set of tiles
-bool touchesWall( SDL_Rect box, Tile* tiles[] );
+// //Checks collision box against set of tiles
+// bool touchesWall( SDL_Rect box, Tile* tiles[] );
 
 //Sets tiles from tile map
 bool setTiles( Tile *tiles[] );
@@ -130,14 +130,14 @@ bool loadMedia( Tile* tiles[] )
 	bool success = true;
 
 	//Load dot texture
-	if( !gDotTexture.loadFromFile( "assets/media/bmp/dot.bmp" ) )
+	if( !gDotTexture.loadFromFile( "assets/media/bmp/dot.bmp", gRenderer ))
 	{
 		printf( "Failed to load dot texture!\n" );
 		success = false;
 	}
 
 	//Load tile texture
-	if( !gTileTexture.loadFromFile( "assets/media/png/tiles.png" ) )
+	if( !gTileTexture.loadFromFile( "assets/media/png/tiles.png", gRenderer ) )
 	{
 		printf( "Failed to load tile set texture!\n" );
 		success = false;
@@ -180,50 +180,50 @@ void close( Tile* tiles[] )
 	SDL_Quit();
 }
 
-bool checkCollision( SDL_Rect a, SDL_Rect b )
-{
-    //The sides of the rectangles
-    int leftA, leftB;
-    int rightA, rightB;
-    int topA, topB;
-    int bottomA, bottomB;
+// bool checkCollision( SDL_Rect a, SDL_Rect b )
+// {
+//     //The sides of the rectangles
+//     int leftA, leftB;
+//     int rightA, rightB;
+//     int topA, topB;
+//     int bottomA, bottomB;
 
-    //Calculate the sides of rect A
-    leftA = a.x;
-    rightA = a.x + a.w;
-    topA = a.y;
-    bottomA = a.y + a.h;
+//     //Calculate the sides of rect A
+//     leftA = a.x;
+//     rightA = a.x + a.w;
+//     topA = a.y;
+//     bottomA = a.y + a.h;
 
-    //Calculate the sides of rect B
-    leftB = b.x;
-    rightB = b.x + b.w;
-    topB = b.y;
-    bottomB = b.y + b.h;
+//     //Calculate the sides of rect B
+//     leftB = b.x;
+//     rightB = b.x + b.w;
+//     topB = b.y;
+//     bottomB = b.y + b.h;
 
-    //If any of the sides from A are outside of B
-    if( bottomA <= topB )
-    {
-        return false;
-    }
+//     //If any of the sides from A are outside of B
+//     if( bottomA <= topB )
+//     {
+//         return false;
+//     }
 
-    if( topA >= bottomB )
-    {
-        return false;
-    }
+//     if( topA >= bottomB )
+//     {
+//         return false;
+//     }
 
-    if( rightA <= leftB )
-    {
-        return false;
-    }
+//     if( rightA <= leftB )
+//     {
+//         return false;
+//     }
 
-    if( leftA >= rightB )
-    {
-        return false;
-    }
+//     if( leftA >= rightB )
+//     {
+//         return false;
+//     }
 
-    //If none of the sides from A are outside B
-    return true;
-}
+//     //If none of the sides from A are outside B
+//     return true;
+// }
 
 bool setTiles( Tile* tiles[] )
 {
@@ -362,25 +362,25 @@ bool setTiles( Tile* tiles[] )
     return tilesLoaded;
 }
 
-bool touchesWall( SDL_Rect box, Tile* tiles[] )
-{
-    //Go through the tiles
-    for( int i = 0; i < TOTAL_TILES; ++i )
-    {
-        //If the tile is a wall type tile
-        if( ( tiles[ i ]->getType() >= TILE_CENTER ) && ( tiles[ i ]->getType() <= TILE_TOPLEFT ) )
-        {
-            //If the collision box touches the wall tile
-            if( checkCollision( box, tiles[ i ]->getBox() ) )
-            {
-                return true;
-            }
-        }
-    }
+// bool touchesWall( SDL_Rect box, Tile* tiles[] )
+// {
+//     //Go through the tiles
+//     for( int i = 0; i < TOTAL_TILES; ++i )
+//     {
+//         //If the tile is a wall type tile
+//         if( ( tiles[ i ]->getType() >= TILE_CENTER ) && ( tiles[ i ]->getType() <= TILE_TOPLEFT ) )
+//         {
+//             //If the collision box touches the wall tile
+//             if( checkCollision( box, tiles[ i ]->getBox() ) )
+//             {
+//                 return true;
+//             }
+//         }
+//     }
 
-    //If no wall tiles were touched
-    return false;
-}
+//     //If no wall tiles were touched
+//     return false;
+// }
 
 int main( int argc, char* args[] )
 {
@@ -444,7 +444,7 @@ int main( int argc, char* args[] )
 				}
 
 				//Render dot
-				dot.render( camera );
+				dot.render( gDotTexture, camera, gRenderer );
 
 				//Update screen
 				SDL_RenderPresent( gRenderer );

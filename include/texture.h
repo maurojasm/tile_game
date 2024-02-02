@@ -2,6 +2,8 @@
 This source code copyrighted by Lazy Foo' Productions 2004-2024
 */
 
+#pragma once
+
 //Using SDL, SDL_image, standard IO, strings, and file streams
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
@@ -20,7 +22,7 @@ class LTexture
 		~LTexture();
 
 		//Loads image at specified path
-		bool loadFromFile( std::string path, SDL_Renderer& gRenderer );
+		bool loadFromFile( std::string path, SDL_Renderer* gRenderer );
 		
 		#if defined(SDL_TTF_MAJOR_VERSION)
 		//Creates image from font string
@@ -40,7 +42,7 @@ class LTexture
 		void setAlpha( Uint8 alpha );
 		
 		//Renders texture at given point
-		void render( int x, int y, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE, SDL_Renderer& gRenderer );
+		void render( SDL_Renderer* gRenderer, int x, int y, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
 		//Gets image dimensions
 		int getWidth();
