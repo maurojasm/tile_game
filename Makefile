@@ -1,23 +1,29 @@
-IDIR = include/
-SRCDIR = src/
-CC = g++
-CFLAGS = -Wall -I$(IDIR) -F/Library/Frameworks -framework SDL2 -F/Library/Frameworks -framework SDL2_image
-ODIR = bin/
+# Binary File
+OBJ := tile_game
 
-_DEPS := dot.h texture.h tile.h
-DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
+# Source Files
+SRC_DIR := src/
+SOURCE_FILES := $(wildcard $(SRC_DIR)*.cpp)
 
-_OBJ := tile_game.o dot.o texture.o tile.o
-OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
+# Source Objects
+OBJ_DIR := bin/
+# OBJECT_FILES := $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SOURCE_FILES))
+OBJECT_FILES = ${SOURCE_FILES:.cpp=.o}
 
-$(ODIR)/%.o: $(SRCDIR)/%.cpp $(DEPS)
-%.o: $(SRCDIR)/%.cpp $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS)
+# Header Files
+HEADER_DIR := include/
 
-tile_game: $(OBJ)
-	$(CC) -o $@ $^ $(CFLAGS)
+# Include directories
+INCLUDE := -I$(HEADER_DIR)
 
-.PHONY: clean
+CC := g++
+CFLAGS := -Wall
 
-clean:
-	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~ 
+LIBRARY := -F/Library/Frameworks -framework SDL2 -F/Library/Frameworks -framework SDL2_image
+
+$(OBJ): $(OBJECT_FILES)
+	@echo compiling binary \'$(OBJ)\'
+	$(CC) $(LIBRARY) $(OBJECT_FILES) -o $(OBJ)
+
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	$(CC) -c $< $(CFLAGS) $(INCLUDE) -o $@
