@@ -17,21 +17,21 @@ $(OBJ): $(OBJECT_FILES)
 
 main.o: main.cpp $(HEADER_DIR)dot.h $(HEADER_DIR)texture.h $(HEADER_DIR)tile.h 
 	@echo "\nCompiling:"
-	$(CC) $(CFLAGS) -c main.cpp
+	$(CC) $(CFLAGS) $(LIBRARY) -c main.cpp
 
 dot.o: dot.cpp $(HEADER_DIR)dot.h $(HEADER_DIR)texture.h
 	@echo "\nCompiling:"
-	$(CC) $(CFLAGS) -c dot.cpp
+	$(CC) $(CFLAGS) $(LIBRARY) -c dot.cpp
 
 texture.o: texture.cpp $(HEADER_DIR)texture.h
 	@echo "\nCompiling:"
-	$(CC) $(CFLAGS) -c texture.cpp
+	$(CC) $(CFLAGS) $(LIBRARY) -c texture.cpp
 
 tile.o: tile.cpp $(HEADER_DIR)tile.h
 	@echo "\nCompiling:"
-	$(CC) $(CFLAGS) -c tile.cpp
+	$(CC) $(CFLAGS) $(LIBRARY) -c tile.cpp
 
 .PHONY: clean
 
 clean:
-	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~ 
+	rm -f *.o *~ core $(HEADER_DIR)/*~ 
