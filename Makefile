@@ -19,8 +19,8 @@ INCLUDE := -I$(HEADER_DIR)
 CC := g++
 CFLAGS := -Wall -std=c++11 -I /Library/Frameworks/SDL2.framework/Headers -I /Library/Frameworks/SDL2_image.framework/Headers
 
-LIBRARY := -F/Library/Frameworks -framework SDL2 -F/Library/Frameworks -framework SDL2_image
-# LIBRARY := -F /Library/Frameworks -framework SDL2 -I /Library/Frameworks/SDL2.framework/Headers -F /Library/Frameworks -framework SDL2_image -I /Library/Frameworks/SDL2_image.framework/Headers
+# LIBRARY := -F/Library/Frameworks -framework SDL2 -F/Library/Frameworks -framework SDL2_image
+LIBRARY := -F /Library/Frameworks -framework SDL2 -I /Library/Frameworks/SDL2.framework/Headers -F /Library/Frameworks -framework SDL2_image -I /Library/Frameworks/SDL2_image.framework/Headers
 
 # CFLAGS:= -c -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -isystem /usr/local/include/SDL2 -Iinclude
 # LDFLAGS:= -L/usr/local/lib
