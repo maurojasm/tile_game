@@ -130,14 +130,14 @@ bool loadMedia( Tile* tiles[] )
 	bool success = true;
 
 	//Load dot texture
-	if( !gDotTexture.loadFromFile( "assets/media/bmp/dot.bmp", gRenderer ))
+	if( !gDotTexture.loadFromFile( "../assets/media/bmp/dot.bmp", gRenderer ))
 	{
 		printf( "Failed to load dot texture!\n" );
 		success = false;
 	}
 
 	//Load tile texture
-	if( !gTileTexture.loadFromFile( "assets/media/png/tiles.png", gRenderer ) )
+	if( !gTileTexture.loadFromFile( "../assets/media/png/tiles.png", gRenderer ) )
 	{
 		printf( "Failed to load tile set texture!\n" );
 		success = false;
@@ -234,7 +234,7 @@ bool setTiles( Tile* tiles[] )
     int x = 0, y = 0;
 
     //Open the map
-    std::ifstream map( "assets/maps/lazy.map" );
+    std::ifstream map( "../assets/maps/lazy.map" );
 
     //If the map couldn't be loaded
     if( map.fail() )
@@ -440,7 +440,7 @@ int main( int argc, char* args[] )
 				//Render level
 				for( int i = 0; i < TOTAL_TILES; ++i )
 				{
-					tileSet[ i ]->render( camera );
+					tileSet[ i ]->render( camera, gTileTexture, gTileClips, gRenderer );
 				}
 
 				//Render dot
