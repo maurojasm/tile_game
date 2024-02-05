@@ -8,7 +8,7 @@ SOURCE_FILES := $(wildcard $(SRC_DIR)*.cpp)
 # Source Objects
 OBJ_DIR := bin/
 # OBJECT_FILES := $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SOURCE_FILES))
-OBJECT_FILES = $(addprefix $(OBJ_DIR),$(notdir $(SOURCES:.cpp=.o)))
+OBJECT_FILES = $(addprefix $(OBJ_DIR),$(notdir $(SOURCE_FILES:.cpp=.o)))
 
 # Header Files
 HEADER_DIR := include/
