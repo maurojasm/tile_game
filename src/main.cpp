@@ -19,7 +19,7 @@ const int SCREEN_HEIGHT = 480;
 
 //The dimensions of the level
 const int LEVEL_WIDTH = 1280;
-const int LEVEL_HEIGHT = 960;
+// const int LEVEL_HEIGHT = 960;
 
 //Tile constants
 const int TILE_WIDTH = 80;

@@ -11,6 +11,8 @@ This source code copyrighted by Lazy Foo' Productions 2004-2024
 #include <string>
 #include <fstream>
 
+#include "texture.h"
+
 //The tile
 class Tile
 {
@@ -23,13 +25,16 @@ class Tile
 		Tile( int x, int y, int tileType );
 
 		//Shows the tile
-		void render( SDL_Rect& camera );
+		void render( SDL_Rect& camera, LTexture gTileTexture, SDL_Rect gTileClips[], SDL_Renderer *gRenderer );
 
 		//Get the tile type
 		int getType();
 
 		//Get the collision box
 		SDL_Rect getBox();
+
+		//Box collision detector
+		bool checkCollision( SDL_Rect a, SDL_Rect b );
 
     private:
 		//The attributes of the tile
