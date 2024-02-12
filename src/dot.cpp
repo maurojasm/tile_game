@@ -56,10 +56,10 @@ void Dot::handleEvent( SDL_Event& e )
 bool Dot::touchesWall( SDL_Rect box, Tile* tiles[] )
 {
     //Go through the tiles
-    for( int i = 0; i < TOTAL_TILES; ++i )
+    for( int i = 0; i < tiles[i]->TOTAL_TILES; ++i )
     {
         //If the tile is a wall type tile
-        if( ( tiles[ i ]->getType() >= TILE_CENTER ) && ( tiles[ i ]->getType() <= TILE_TOPLEFT ) )
+        if( ( tiles[ i ]->getType() >= tiles[i]->TILE_CENTER ) && ( tiles[ i ]->getType() <=  tiles[ i ]->TILE_TOPLEFT ) )
         {
             //If the collision box touches the wall tile
             if( checkCollision( box, tiles[ i ]->getBox() ) )
@@ -118,7 +118,7 @@ bool Dot::checkCollision( SDL_Rect a, SDL_Rect b )
     return true;
 }
 
-void Dot::move( Tile *tiles[] )
+void Dot::move( Tile *tiles[], int LEVEL_WIDTH, int LEVEL_HEIGHT)
 {
     //Move the dot left or right
     mBox.x += mVelX;
@@ -141,7 +141,7 @@ void Dot::move( Tile *tiles[] )
     }
 }
 
-void Dot::setCamera( SDL_Rect& camera )
+void Dot::setCamera( SDL_Rect& camera, int SCREEN_WIDTH, int SCREEN_HEIGHT, int LEVEL_WIDTH, int LEVEL_HEIGHT)
 {
 	//Center the camera over the dot
 	camera.x = ( mBox.x + DOT_WIDTH / 2 ) - SCREEN_WIDTH / 2;
@@ -166,8 +166,8 @@ void Dot::setCamera( SDL_Rect& camera )
 	}
 }
 
-void Dot::render( LTexture gDotTexture, SDL_Rect& camera, SDL_Renderer* gRenderer )
+void Dot::render( LTexture& gDotTexture, SDL_Rect& camera, SDL_Renderer* gRenderer )
 {
     //Show the dot
-	gDotTexture.render( gRenderer, mBox.x - camera.x, mBox.y - camera.y );
+	gDotTexture.render( mBox.x - camera.x, mBox.y - camera.y, gRenderer );
 }
