@@ -1,40 +1,47 @@
-# Binary File
-OBJ := tile_game
+# Compiler
+CC = g++
 
-# Source Files
-SRC_DIR := src/
-SOURCE_FILES := $(wildcard $(SRC_DIR)*.cpp)
+# Binary file
+OBJ = mouse_events
 
-# Source Objects
+# Source files
+SRC_DIR = src/
+SRC_FILES:= $(wildcard $(SRC_DIR)*.cpp)
+
+# Headers directory
+HEADER_DIR = include/
+HEADER_FILES = $(wildcard $(HEADER_DIR)*.h)
+# HEADER_FILES = $(HEADER_DIR)texture.h
+
+# Source objects
 OBJ_DIR := bin/
-# OBJECT_FILES := $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SOURCE_FILES))
-OBJECT_FILES = $(addprefix $(OBJ_DIR),$(notdir $(SOURCE_FILES:.cpp=.o)))
+OBJECT_FILES:= $(addprefix $(OBJ_DIR),$(notdir $(SRC_FILES:.cpp=.o)))
+# OBJECT_FILES:= $(addprefix $(OBJ_DIR), main.o texture.o)
 
-# Header Files
-HEADER_DIR := include/
+# Flags
+CFLAGS := -Wall -std=c++11
 
-# Include directories
-INCLUDE := -I$(HEADER_DIR)
-
-CC := g++
-CFLAGS := -Wall -std=c++11 -I /Library/Frameworks/SDL2.framework/Headers -I /Library/Frameworks/SDL2_image.framework/Headers
-
-# LIBRARY := -F/Library/Frameworks -framework SDL2 -F/Library/Frameworks -framework SDL2_image
-LIBRARY := -F /Library/Frameworks -framework SDL2 -I /Library/Frameworks/SDL2.framework/Headers -F /Library/Frameworks -framework SDL2_image -I /Library/Frameworks/SDL2_image.framework/Headers
-
-# CFLAGS:= -c -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -isystem /usr/local/include/SDL2 -Iinclude
-# LDFLAGS:= -L/usr/local/lib
-# LDLIBS:= -lSDL2 -lSDL2_image
+# Linking Library
+LINK_LIB = -F /Library/Frameworks -framework SDL2 -F /Library/Frameworks -framework SDL2_image
+LIBRARY := -F /Library/Frameworks
 
 # Instantly runs the game after linking
 run: $(OBJ)
 	./$(OBJ)
 
+# Link objects to exec
 $(OBJ): $(OBJECT_FILES)
-	@echo "Linking..."
-	$(CC) $(OBJECT_FILES) -o $(OBJ) $(LIBRARY)
-	@echo "Linking for target $(OBJ) succeeded!"
+	@echo "\nLinking..."
+	$(CC) $(CFLAGS) $(LINK_LIB) -o $(OBJ) $(OBJECT_FILES)
+	@echo "Linking for target $(OBJ) succeeded!\n"
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.cpp
-	@echo "Compiling:"
-	$(CC) -c $< $(CFLAGS) $(INCLUDE) -o $@
+# Compile objects
+$(OBJ_DIR)%.o: $(SRC_DIR)%.cpp $(HEADER_FILES)
+	@echo "\nCompiling $@..."
+	$(CC) -c $(CFLAGS) $(LIBRARY) $< -o $@
+
+.PHONY: clean
+
+clean:
+	@echo "Cleaning object files..."
+	rm -f $(OBJ_DIR)*.o *~ $(OBJ) $(HEADER_DIR)/*~ 
