@@ -2,7 +2,7 @@
 CC = g++
 
 # Binary file
-OBJ = mouse_events
+OBJ = tile_game
 
 # Source files
 SRC_DIR = src/
