@@ -1,7 +1,3 @@
-/*
-This source code copyrighted by Lazy Foo' Productions 2004-2024
-*/
-
 #pragma once
 
 //Using SDL, SDL_image, standard IO, strings, and file streams
@@ -42,7 +38,7 @@ class LTexture
 		void setAlpha( Uint8 alpha );
 		
 		//Renders texture at given point
-		void render( SDL_Renderer* gRenderer, int x, int y, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
+		void render( int x, int y, SDL_Renderer* gRenderer, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE );
 
 		//Gets image dimensions
 		int getWidth();
