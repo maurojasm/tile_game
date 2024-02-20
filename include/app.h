@@ -61,6 +61,7 @@ class App {
         //Sets tiles from tile map
         bool setTiles( Tile *tiles[] );
 
+        // starts application 
         void start();
     private:
         //The window we'll be rendering to
