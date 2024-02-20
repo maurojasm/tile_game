@@ -69,17 +69,19 @@ bool App::loadMedia( Tile* tiles[] )
 	bool success = true;
 
 	//Load dot texture
-	if( !gDotTexture.loadFromFile( "../assets/media/bmp/dot.bmp", gRenderer ) )
+	if( !gDotTexture.loadFromFile( "assets/media/bmp/dot.bmp", gRenderer ) )
 	{
 		printf( "Failed to load dot texture!\n" );
 		success = false;
+		return success;
 	}
 
 	//Load tile texture
-	if( !gTileTexture.loadFromFile( "../assets/media/png/tiles.png", gRenderer ) )
+	if( !gTileTexture.loadFromFile( "assets/media/png/tiles.png", gRenderer ) )
 	{
 		printf( "Failed to load tile set texture!\n" );
 		success = false;
+		return success;
 	}
 
 	//Load tile map
@@ -87,6 +89,7 @@ bool App::loadMedia( Tile* tiles[] )
 	{
 		printf( "Failed to load tile set!\n" );
 		success = false;
+		return success;
 	}
 
 	return success;
@@ -128,7 +131,7 @@ bool App::setTiles( Tile* tiles[] )
     int x = 0, y = 0;
 
     //Open the map
-    std::ifstream map( "../assets/maps/lazy.map" );
+    std::ifstream map( "assets/maps/lazy.map" );
 
     //If the map couldn't be loaded
     if( map.fail() )
@@ -261,6 +264,7 @@ void App::start() {
 	if( !init() )
 	{
 		printf( "Failed to initialize!\n" );
+		return;
 	}
 	else
 	{
@@ -271,6 +275,7 @@ void App::start() {
 		if( !loadMedia( tileSet ) )
 		{
 			printf( "Failed to load media!\n" );
+			return;
 		}
 		else
 		{	
@@ -304,6 +309,7 @@ void App::start() {
 
 				//Move the dot
 				dot.move( tileSet, LEVEL_WIDTH, LEVEL_HEIGHT );
+				printf("Dot moved!\n");
 				dot.setCamera( camera , SCREEN_WIDTH, SCREEN_HEIGHT, LEVEL_WIDTH, LEVEL_HEIGHT);
 
 				//Clear screen
