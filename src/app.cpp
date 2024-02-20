@@ -309,7 +309,6 @@ void App::start() {
 
 				//Move the dot
 				dot.move( tileSet, LEVEL_WIDTH, LEVEL_HEIGHT );
-				printf("Dot moved!\n");
 				dot.setCamera( camera , SCREEN_WIDTH, SCREEN_HEIGHT, LEVEL_WIDTH, LEVEL_HEIGHT);
 
 				//Clear screen
