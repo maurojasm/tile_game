@@ -56,7 +56,7 @@ void Dot::handleEvent( SDL_Event& e )
 bool Dot::touchesWall( SDL_Rect box, Tile* tiles[] )
 {
     //Go through the tiles
-    for( int i = 0; i < tiles[i]->TOTAL_TILES; ++i )
+    for( int i = 0; i < tiles[i]->TOTAL_TILES - 1; ++i )
     {
         //If the tile is a wall type tile
         if( ( tiles[ i ]->getType() >= tiles[i]->TILE_CENTER ) && ( tiles[ i ]->getType() <=  tiles[ i ]->TILE_TOPLEFT ) )
